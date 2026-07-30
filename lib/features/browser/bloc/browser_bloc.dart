@@ -533,13 +533,18 @@ class BrowserBloc extends Bloc<BrowserEvent, BrowserState> {
 
       final index = tabsList.indexWhere((t) => t.id == tabId);
       if (index == -1) return;
-      // Delete the image file if it exists
       final tabToClose = tabsList[index];
-      if (tabToClose.imagePath != null) {
-        final file = File(tabToClose.imagePath!);
-        if (await file.exists()) {
-          await file.delete();
+      try {
+        // Delete the image file if it exists
+        if (tabToClose.imagePath != null) {
+          final file = File(tabToClose.imagePath!);
+          if (await file.exists()) {
+            await file.delete();
+          }
         }
+      } catch (e) {
+        AppLogger.e("Error deleting tab screenshot", error: e);
+        // Continue to dispose the controller even if deleting the screenshot fails
       }
 
       /// If only one tab remains in that list
@@ -732,11 +737,16 @@ class BrowserBloc extends Bloc<BrowserEvent, BrowserState> {
 
       for (final tab in tabsList) {
         // Delete image file if it exists
-        if (tab.imagePath != null) {
-          final file = File(tab.imagePath!);
-          if (await file.exists()) {
-            await file.delete();
+        try {
+          if (tab.imagePath != null) {
+            final file = File(tab.imagePath!);
+            if (await file.exists()) {
+              await file.delete();
+            }
           }
+        } catch (e) {
+          AppLogger.e("Error deleting tab screenshot", error: e);
+          continue; // Continue to dispose the controller even if deleting the screenshot fails
         }
         await tab.controller.dispose();
       }
