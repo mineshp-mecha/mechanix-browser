@@ -532,6 +532,7 @@ class BrowserBloc extends Bloc<BrowserEvent, BrowserState> {
           : state.activeNormalTabIndex;
 
       final index = tabsList.indexWhere((t) => t.id == tabId);
+      if (index == -1) return;
       // Delete the image file if it exists
       final tabToClose = tabsList[index];
       if (tabToClose.imagePath != null) {
