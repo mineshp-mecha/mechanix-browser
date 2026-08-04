@@ -113,11 +113,6 @@
           "type": 1
         },
         {
-          "id": "7:5539269492544820135",
-          "name": "previewPath",
-          "type": 9
-        },
-        {
           "id": "8:8193946014709493973",
           "name": "screenshot",
           "type": 23
@@ -134,7 +129,9 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    5539269492544820135
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

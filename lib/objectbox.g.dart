@@ -150,12 +150,6 @@ final _entities = <obx_int.ModelEntity>[
         flags: 0,
       ),
       obx_int.ModelProperty(
-        id: const obx_int.IdUid(7, 5539269492544820135),
-        name: 'previewPath',
-        type: 9,
-        flags: 0,
-      ),
-      obx_int.ModelProperty(
         id: const obx_int.IdUid(8, 8193946014709493973),
         name: 'screenshot',
         type: 23,
@@ -216,7 +210,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
     lastSequenceId: const obx_int.IdUid(0, 0),
     retiredEntityUids: const [],
     retiredIndexUids: const [],
-    retiredPropertyUids: const [],
+    retiredPropertyUids: const [5539269492544820135],
     retiredRelationUids: const [],
     modelVersion: 5,
     modelVersionParserMinimum: 5,
@@ -360,9 +354,6 @@ obx_int.ModelDefinition getObjectBoxModel() {
         final tabIdOffset = fbb.writeString(object.tabId);
         final urlOffset = fbb.writeString(object.url);
         final titleOffset = fbb.writeString(object.title);
-        final previewPathOffset = object.previewPath == null
-            ? null
-            : fbb.writeString(object.previewPath!);
         final screenshotOffset = object.screenshot == null
             ? null
             : fbb.writeListInt8(object.screenshot!);
@@ -373,7 +364,6 @@ obx_int.ModelDefinition getObjectBoxModel() {
         fbb.addOffset(3, urlOffset);
         fbb.addOffset(4, titleOffset);
         fbb.addBool(5, object.isActive);
-        fbb.addOffset(6, previewPathOffset);
         fbb.addOffset(7, screenshotOffset);
         fbb.finish(fbb.endTable());
         return object.id;
@@ -408,9 +398,6 @@ obx_int.ModelDefinition getObjectBoxModel() {
           14,
           false,
         );
-        final previewPathParam = const fb.StringReader(
-          asciiOptimization: true,
-        ).vTableGetNullable(buffer, rootOffset, 16);
         final screenshotParam =
             const fb.Uint8ListReader(
                   lazy: false,
@@ -423,7 +410,6 @@ obx_int.ModelDefinition getObjectBoxModel() {
           url: urlParam,
           title: titleParam,
           isActive: isActiveParam,
-          previewPath: previewPathParam,
           screenshot: screenshotParam,
         );
 
@@ -528,13 +514,8 @@ class TabEntity_ {
     _entities[2].properties[5],
   );
 
-  /// See [TabEntity.previewPath].
-  static final previewPath = obx.QueryStringProperty<TabEntity>(
-    _entities[2].properties[6],
-  );
-
   /// See [TabEntity.screenshot].
   static final screenshot = obx.QueryByteVectorProperty<TabEntity>(
-    _entities[2].properties[7],
+    _entities[2].properties[6],
   );
 }

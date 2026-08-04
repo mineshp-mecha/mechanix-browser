@@ -11,7 +11,6 @@ class TabEntity {
   String url;
   String title;
   bool isActive;
-  String? previewPath;
   Uint8List? screenshot;
 
   TabEntity({
@@ -21,7 +20,6 @@ class TabEntity {
     required this.url,
     required this.title,
     required this.isActive,
-    this.previewPath,
     this.screenshot,
   });
 }
