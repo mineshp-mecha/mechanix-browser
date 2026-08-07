@@ -35,6 +35,8 @@ class _BrowserScreenState extends State<BrowserScreen> {
     return BlocBuilder<BrowserBloc, BrowserState>(
       builder: (context, state) {
         return Scaffold(
+          // Disable default Scaffold resizing to prevent the entire body 
+          // from squashing when the software keyboard pops up.
           resizeToAvoidBottomInset: false,
           body: Stack(
             children: [
@@ -56,7 +58,8 @@ class _BrowserScreenState extends State<BrowserScreen> {
                   );
                 },
               ),
-
+              // Positioned bottom bar that dynamically floats above 
+              // the software keyboard using viewInsets.bottom.
               Positioned(
                 left: 0,
                 right: 0,
